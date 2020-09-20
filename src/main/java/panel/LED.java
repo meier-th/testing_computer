@@ -12,6 +12,7 @@ public class LED {
 
     public void setMode(Mode mode) {
         this.mode = mode;
+        System.out.println("LED is "+mode.name());
     }
 
     public Mode getMode() {

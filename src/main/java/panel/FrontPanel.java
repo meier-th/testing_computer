@@ -8,6 +8,7 @@ public class FrontPanel implements Panel {
 
     private SideEffect sideEffect = SideEffect.NONE;
     private final List<LED> leds;
+    private final String name;
 
     private void setLedsMode(System.State state) {
         LED.Mode mode = LED.Mode.DISABLED;
@@ -21,8 +22,13 @@ public class FrontPanel implements Panel {
         leds.forEach(led -> led.setMode(finalMode));
     }
 
-    public FrontPanel(LED... leds) {
+    public FrontPanel(String name, LED... leds) {
+        this.name = name;
         this.leds = List.of(leds);
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public SideEffect getSideEffect() {
@@ -31,9 +37,10 @@ public class FrontPanel implements Panel {
 
     public void setState(System.State state) {
         switch (state) {
-            case OFF -> this.sideEffect = SideEffect.NONE;
-            case TESTING, TERMINATING -> this.sideEffect = SideEffect.BLINKING;
-            case WORKING -> this.sideEffect = SideEffect.SHINING;
+            case OFF -> {this.sideEffect = SideEffect.NONE; java.lang.System.out.printf("Front panel %s is switched off\n", name);}
+            case TESTING, TERMINATING -> {this.sideEffect = SideEffect.BLINKING; java.lang.System.out.printf("Front panel %s is blinking\n", name);}
+            case WORKING -> {this.sideEffect = SideEffect.SHINING; java.lang.System.out.printf("Front panel %s is shining\n", name);}
         }
+        setLedsMode(state);
     }
 }
