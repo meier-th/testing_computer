@@ -17,7 +17,7 @@ public class System {
         computer.indicateState(state);
     }
 
-    public System(Computer computer) {
+    System(Computer computer) {
         this.computer = computer;
     }
 
@@ -45,7 +45,7 @@ public class System {
         }
     }
 
-    public void test() throws InterruptedException {
+    private void test() throws InterruptedException {
         java.lang.System.out.printf("OS of %s is testing...\n", computer.getName());
         setState(State.TESTING);
         Thread.sleep(500);
