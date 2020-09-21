@@ -31,6 +31,10 @@ public class Computer implements Observable {
         this.os.terminate();
     }
 
+    public System getOs() {
+        return os;
+    }
+
     public void indicateState(System.State state) {
         panels.forEach(panel -> panel.setState(state));
     }

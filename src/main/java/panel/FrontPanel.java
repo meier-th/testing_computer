@@ -36,11 +36,22 @@ public class FrontPanel implements Panel {
     }
 
     public void setState(System.State state) {
-        switch (state) {
-            case OFF -> {this.sideEffect = SideEffect.NONE; java.lang.System.out.printf("Front panel %s is switched off\n", name);}
-            case TESTING, TERMINATING -> {this.sideEffect = SideEffect.BLINKING; java.lang.System.out.printf("Front panel %s is blinking\n", name);}
-            case WORKING -> {this.sideEffect = SideEffect.SHINING; java.lang.System.out.printf("Front panel %s is shining\n", name);}
+        if (!leds.isEmpty()) {
+            switch (state) {
+                case OFF -> {
+                    this.sideEffect = SideEffect.NONE;
+                    java.lang.System.out.printf("Front panel %s is switched off\n", name);
+                }
+                case TESTING, TERMINATING -> {
+                    this.sideEffect = SideEffect.BLINKING;
+                    java.lang.System.out.printf("Front panel %s is blinking\n", name);
+                }
+                case WORKING -> {
+                    this.sideEffect = SideEffect.SHINING;
+                    java.lang.System.out.printf("Front panel %s is shining\n", name);
+                }
+            }
+            setLedsMode(state);
         }
-        setLedsMode(state);
     }
 }
