@@ -25,8 +25,10 @@ public class CommunicationPanelTest {
         CommunicationPanel panel = new CommunicationPanel("name");
         panel.setState(state);
         switch (state) {
-            case OFF, TESTING -> assertEquals(Panel.SideEffect.NONE, panel.getSideEffect());
-            case WORKING, TERMINATING -> assertEquals(Panel.SideEffect.HUMMING, panel.getSideEffect());
+            case OFF:
+            case TESTING: assertEquals(Panel.SideEffect.NONE, panel.getSideEffect()); break;
+            case WORKING:
+            case TERMINATING: assertEquals(Panel.SideEffect.HUMMING, panel.getSideEffect()); break;
         }
     }
 

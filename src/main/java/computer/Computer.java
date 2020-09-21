@@ -4,6 +4,8 @@ import entity.Observable;
 import panel.Panel;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Computer implements Observable {
 
@@ -14,7 +16,7 @@ public class Computer implements Observable {
     public Computer(String name, Panel... panels) {
         this.os = new System(this);
         this.name = name;
-        this.panels = List.of(panels);
+        this.panels = Stream.of(panels).collect(Collectors.toList());
     }
 
     public String getName() {

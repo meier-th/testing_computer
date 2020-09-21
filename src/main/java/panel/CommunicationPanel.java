@@ -21,8 +21,10 @@ public class CommunicationPanel implements Panel {
 
     public void setState(System.State state) {
         switch (state) {
-            case OFF, TESTING -> this.sideEffect = SideEffect.NONE;
-            case TERMINATING, WORKING -> this.sideEffect = SideEffect.HUMMING;
+            case OFF:
+            case TESTING: this.sideEffect = SideEffect.NONE; break;
+            case TERMINATING:
+            case WORKING: this.sideEffect = SideEffect.HUMMING; break;
         }
         if (sideEffect == SideEffect.HUMMING)
             java.lang.System.out.printf("Communication panel %s is humming\n", name);

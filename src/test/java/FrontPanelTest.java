@@ -26,9 +26,10 @@ public class FrontPanelTest {
         FrontPanel panel = new FrontPanel("panel", new LED());
         panel.setState(state);
         switch (state) {
-            case OFF -> assertEquals(Panel.SideEffect.NONE, panel.getSideEffect());
-            case WORKING -> assertEquals(Panel.SideEffect.SHINING, panel.getSideEffect());
-            case TERMINATING, TESTING -> assertEquals(Panel.SideEffect.BLINKING, panel.getSideEffect());
+            case OFF: assertEquals(Panel.SideEffect.NONE, panel.getSideEffect()); break;
+            case WORKING: assertEquals(Panel.SideEffect.SHINING, panel.getSideEffect()); break;
+            case TERMINATING:
+            case TESTING: assertEquals(Panel.SideEffect.BLINKING, panel.getSideEffect()); break;
         }
     }
 
@@ -50,17 +51,21 @@ public class FrontPanelTest {
         FrontPanel panel = new FrontPanel("name", led1, led2);
         panel.setState(state);
         switch (state) {
-            case OFF -> {
+            case OFF: {
                 assertEquals(LED.Mode.DISABLED, led1.getMode());
                 assertEquals(LED.Mode.DISABLED, led2.getMode());
+                break;
             }
-            case WORKING -> {
+            case WORKING: {
                 assertEquals(LED.Mode.ENABLED, led1.getMode());
                 assertEquals(LED.Mode.ENABLED, led2.getMode());
+                break;
             }
-            case TERMINATING, TESTING -> {
+            case TERMINATING:
+            case TESTING: {
                 assertEquals(LED.Mode.BLINKING, led1.getMode());
                 assertEquals(LED.Mode.BLINKING, led2.getMode());
+                break;
             }
         }
     }
